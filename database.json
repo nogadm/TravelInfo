@@ -1,0 +1,100 @@
+{
+  "New York City": {
+	"country": "USA",
+	"currency": "USD",
+	"language": "English",
+    "time_zone": -4,
+    "emergency_numbers": {
+      "Police": "911",
+      "Fire": "911",
+      "Medical": "911"
+    },
+    "phrases": {
+      "Hello": "Hello",
+      "Good morning": "Good morning",
+      "Goodbye": "Goodbye"
+    },
+    "adapter": [
+	  "Type-A",
+	  "Type-B"
+	]
+  },
+  "Mumbai": {
+	"country": "India",
+	"currency": "INR",
+	"language": "Hindi",
+    "time_zone": 5.5,
+    "emergency_numbers": {
+      "Police": "112",
+      "Fire": "112",
+      "Medical": "112"
+    },
+    "phrases": {
+      "Hello": "namaste",
+      "Good morning": "shubh prabhaat",
+      "Goodbye": "alavida"
+    },
+    "adapter": [
+	  "Type-C",
+	  "Type-D",
+	  "Type-M"
+	]
+  },
+  "London": {
+	"country": "UK",
+	"currency": "GBP",
+	"language": "English",
+    "time_zone": 1,
+    "emergency_numbers": {
+      "Police": "999",
+      "Fire": "999",
+      "Medical": "999"
+    },
+    "phrases": {
+      "Hello": "Hello",
+      "Good morning": "Good morning",
+      "Goodbye": "Goodbye"
+    },
+    "adapter": [
+	  "Type-G"
+	]
+  },
+  "Barcelona": {
+	"country": "Spain",
+	"currency": "EUR",
+	"language": "Spanish",
+    "time_zone": 2,
+    "emergency_numbers": {
+      "Police": "112",
+      "Fire": "112",
+      "Medical": "112"
+    },
+    "phrases": {
+     "Hello": "Hola",
+      "Good morning": "Buen día",
+      "Goodbye": "Adiós"
+    },
+     "adapter": [
+	  "Type-F"
+	]
+  },
+  "Tel Aviv": {
+	"country": "Israel",
+	"currency": "ILS",
+	"language": "Hebrew",
+    "time_zone": 3,
+    "emergency_numbers": {
+      "Police": "100",
+      "Fire": "102",
+      "Medical": "101"
+    },
+    "phrases": {
+      "Hello": "shalom",
+      "Good morning": "boker tov",
+      "Goodbye": "lehitraot"
+    },
+     "adapter": [
+	  "Type-H"
+	]
+  }
+}
