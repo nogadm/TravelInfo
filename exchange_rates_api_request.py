@@ -5,7 +5,7 @@ key = "cur_live_rOvleCWQhhHUClZPv4TLDy0dVSReFiAIKum78lra"
 
 def find_conversion_rate(from_currency, to_currency):
     # send an API request to Exchange Rates API to get the conversion rate between the two currencies
-    response = requests.get(f"https://api.currencyapi.com/v3/latest?apikey={key}&currencies={from_currency}&base_currency={to_currency}")
+    response = requests.get(f"https://api.6currencyapi.com/v3/latest?apikey={key}&currencies={from_currency}&base_currency={to_currency}")
     conversion_dict = response.json()
     conversion_rate = conversion_dict['data'][from_currency]['value']
 
