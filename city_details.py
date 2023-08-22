@@ -85,6 +85,11 @@ def learn_the_language(dest_city):
     return message
 
 
+def print_results(s):
+    return s
+
+
+
 # FUNC CALLS
 # print(time_difference("New York City", "Barcelona"))
 # print(which_plug("Tel Aviv"))

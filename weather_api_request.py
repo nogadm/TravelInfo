@@ -35,6 +35,3 @@ def get_weather_forcast(city, start_date, end_date):
                              "sunrise":sunrise, "sunset":sunset}
 
     return forcast
-
-
-print(get_weather_forcast("New York City", "2024-04-01", "2024-04-5"))

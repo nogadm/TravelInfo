@@ -20,18 +20,18 @@
         know where and when you're traveling.
       </p>
     </div>
-    <form action="submit" method="post">
+    <form action="/info" method="POST">
       <div class="input-group mb-3">
         <label class="input-group-text" for="sourceCities"
           >I'm leaving from</label
         >
-        <select class="form-select" id="sourceCities">
+        <select class="form-select" id="sourceCities" name="sourceCities">
           <option selected>Choose...</option>
-          <option value="1">New York City</option>
-          <option value="2">Mumbai</option>
-          <option value="3">London</option>
-          <option value="4">Barcelona</option>
-          <option value="5">Tel Aviv</option>
+          <option value="New York City">New York City</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="London">London</option>
+          <option value="Barcelona">Barcelona</option>
+          <option value="Tel Aviv">Tel Aviv</option>
         </select>
       </div>
 
@@ -39,24 +39,24 @@
         <label class="input-group-text" for="destinationCities"
           >I'm arriving at</label
         >
-        <select class="form-select" id="destinationCities">
+        <select class="form-select" id="destinationCities" name="destinationCities">
           <option selected>Choose...</option>
-          <option value="1">New York City</option>
-          <option value="2">Mumbai</option>
-          <option value="3">London</option>
-          <option value="4">Barcelona</option>
-          <option value="5">Tel Aviv</option>
+          <option value="New York City">New York City</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="London">London</option>
+          <option value="Barcelona">Barcelona</option>
+          <option value="Tel Aviv">Tel Aviv</option>
         </select>
       </div>
 
       <div class="mb-3">
         <label for="arrivalDatePicker">Arrival date:</label>
-        <input type="date" id="arrivalDatePicker" name="chosenDate" />
+        <input type="date" id="arrivalDatePicker" name="arrivalDatePicker" />
       </div>
 
       <div class="mb-5">
         <label for="departureDatePicker">Departure date:</label>
-        <input type="date" id="departureDatePicker" name="chosenDate" />
+        <input type="date" id="departureDatePicker" name="departureDatePicker" />
       </div>
 
       <div class="input-group mb-5">
