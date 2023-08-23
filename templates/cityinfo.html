@@ -13,6 +13,6 @@
   </head>
   <body class="container text-left pt-5">
     <h1>Result:</h1>
-    <p>{{ result }}</p>
+     <p>{{ result|replace('\n', '<br>')|safe }}</p>
   </body>
 </html>

@@ -1,5 +1,6 @@
 import json
 from datetime import datetime, timedelta, timezone
+import currency_api_request as ca
 
 
 def load_database():
@@ -37,7 +38,7 @@ def time_difference(src_city, dest_city):
     current_time_in_dest = datetime.now(tz=timezone(timedelta(hours=dest_time_zone))).strftime('%H:%M')
 
     # message to be displayed to user
-    message = f"{src_city}, {src_country} is {abs(time_diff)} hours {relative} of {dest_city}, {dest_country}\n\n" \
+    message = f"{src_city} is {abs(time_diff)} hours {relative} of {dest_city}\n\n" \
               f"Current Time:\n{src_city}, {src_country}: {current_time_in_src}\n{dest_city}, {dest_country}: " \
                f"{current_time_in_dest}"
     return message
@@ -51,7 +52,7 @@ def which_plug(dest_city):
     dest_city_plugs = data[dest_city]["adapter"]
 
     # message to be displayed to user
-    message = f"The plugs that are used in {dest_city}, {data[dest_city]['country']} are:\n" \
+    message = f"The plugs that are used in {dest_city} are:\n" \
               f"{', '.join(dest_city_plugs)}"
     return message
 
@@ -65,7 +66,7 @@ def emergency_numbers(dest_city):
     emergency_nums_str = ', '.join(f'{key} - {value}' for key, value in emergency_nums.items())
 
     # message to be displayed to user
-    message = f"The emergency numbers in {dest_city}, {data[dest_city]['country']} are:\n{emergency_nums_str}"
+    message = f"The emergency numbers in {dest_city} are:\n{emergency_nums_str}"
     return message
 
 
@@ -79,14 +80,29 @@ def learn_the_language(dest_city):
     phrases_str = '\n'.join(f'{key}: {value}' for key, value in phrases.items())
 
     # message to be displayed to user
-    message = f"The main language in {dest_city}, {data[dest_city]['country']} is {lang}.\n\n" \
+    message = f"The main language in {dest_city} is {lang}.\n\n" \
               f"Here are some helpful phrases you should probably know:\n" \
               f"{phrases_str}"
     return message
 
 
-def print_results(s):
-    return s
+def full_city_details(src_city, dest_city):
+    # load database json file
+    data = load_database()
+
+    src_currency = data[src_city]["currency"]
+    dest_currency = data[dest_city]["currency"]
+    conversion_rate = ca.convert_amount(src_currency, dest_currency, 1)
+
+    time_diff = time_difference(src_city, dest_city)
+    plug = which_plug(dest_city)
+    emergency_nums = emergency_numbers(dest_city)
+    phrases = learn_the_language(dest_city)
+
+    new_line = "\n\n\n\n"
+    message = f"{conversion_rate}{new_line}{time_diff}{new_line}{plug}{new_line}{emergency_nums}{new_line}{phrases}"
+    return message
+
 
 
 

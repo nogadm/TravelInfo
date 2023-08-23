@@ -71,8 +71,8 @@
     },
     "phrases": {
      "Hello": "Hola",
-      "Good morning": "Buen día",
-      "Goodbye": "Adiós"
+      "Good morning": "Buen dia",
+      "Goodbye": "Adios"
     },
      "adapter": [
 	  "Type-F"
