@@ -107,5 +107,11 @@ def full_city_details(src_city, dest_city):
     return message
 
 
+def find_country(dest_city):
+    data = load_database()
+    return data[dest_city]["country"]
+
+
+
 
 

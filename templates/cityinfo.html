@@ -12,7 +12,8 @@
     <title>TravelInfo</title>
   </head>
   <body class="container text-left pt-5">
-    <h1>Result:</h1>
-     <p>{{ result|replace('\n', '<br>')|safe }}</p>
+    <p class="fs-4 mb-5">
+         Some important details you should know before traveling to {{dest_city}}, {{dest_country}}:</p>
+    <p>{{ result|replace('\n', '<br>')|safe }}</p>
   </body>
 </html>

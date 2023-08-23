@@ -16,8 +16,9 @@ def calculate():
     dest_city = request.form['destinationCities']
     # arrival_date = str(request.form['arrivalDatePicker'])
     # departure_date = str(request.form['departureDatePicker'])
+    dest_country = cd.find_country(dest_city)
     result = cd.full_city_details(src_city, dest_city)
-    return render_template('cityinfo.html', result=result)
+    return render_template('cityinfo.html', result=result, dest_country=dest_country, dest_city=dest_city)
 
     # להכין עוד קובץ פייתון נפרד שמקבל - עיר מקור, עיר יעד, תאריך יציאה, תאריך חזרה
     # הקובץ הוא זה שיקרא לכל הפונקציות (חוץ מהתחזית אולי) ויחזיר בחזרה סטרינג אחד מסודר יפה
