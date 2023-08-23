@@ -12,8 +12,46 @@
     <title>TravelInfo</title>
   </head>
   <body class="container text-left pt-5">
+    <!-- title -->
     <p class="fs-4 mb-5">
-         Some important details you should know before traveling to {{dest_city}}, {{dest_country}}:</p>
-    <p>{{ result|replace('\n', '<br>')|safe }}</p>
+      Some important details you should know before traveling to {{dest_city}},
+      {{dest_country}}:
+    </p>
+
+    <!--  weather forcast -->
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Minimum<br />Temperature</th>
+          <th>Maximum<br />Temperature</th>
+          <th>Sunrise</th>
+          <th>Sunset</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for key, value in weather.items() %}
+        <tr>
+          <td>{{ key }}</td>
+          <td>{{ value.min_temp_c }}°C / {{ value.min_temp_f }}°F</td>
+          <td>{{ value.max_temp_c }}°C / {{ value.max_temp_f }}°F</td>
+          <td>{{ value.sunrise }}</td>
+          <td>{{ value.sunset }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!--  city information  -->
+    <p>{{ result|replace('\n', '<br />')|safe }}</p>
   </body>
+  <style>
+    table {
+      border-collapse: separate;
+      border-spacing: 10px;
+    }
+
+    td {
+      padding: 10px;
+    }
+  </style>
 </html>
