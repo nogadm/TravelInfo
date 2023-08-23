@@ -90,26 +90,21 @@ def full_city_details(src_city, dest_city):
     # load database json file
     data = load_database()
 
+    # find conversion rate
     src_currency = data[src_city]["currency"]
     dest_currency = data[dest_city]["currency"]
     conversion_rate = ca.convert_amount(src_currency, dest_currency, 1)
 
+    # find the rest of the city details
     time_diff = time_difference(src_city, dest_city)
     plug = which_plug(dest_city)
     emergency_nums = emergency_numbers(dest_city)
     phrases = learn_the_language(dest_city)
 
+    # return all city details in a combined string
     new_line = "\n\n\n\n"
     message = f"{conversion_rate}{new_line}{time_diff}{new_line}{plug}{new_line}{emergency_nums}{new_line}{phrases}"
     return message
-
-
-
-
-# FUNC CALLS
-# print(time_difference("New York City", "Barcelona"))
-# print(which_plug("Tel Aviv"))
-
 
 
 

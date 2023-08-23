@@ -12,6 +12,7 @@ def convert_amount(from_currency, to_currency, amount_to_convert):
     # calculate converted amount
     converted_amount = amount_to_convert * conversion_rate
 
+    # return message according to the desired amount to convert
     if amount_to_convert == 1:
         message = f"1{from_currency} is equal to {round(conversion_rate,2)}{to_currency}"
     else:
