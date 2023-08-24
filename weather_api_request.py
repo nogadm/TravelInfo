@@ -1,3 +1,5 @@
+import base64
+
 import requests
 import pandas as pd
 
@@ -35,3 +37,10 @@ def get_weather_forcast(city, start_date, end_date):
                              "sunrise":sunrise, "sunset":sunset}
 
     return forcast
+
+
+def weather_icon():
+    with open('icons/weather.png', 'rb') as f:
+        image = f.read()
+        encoded_image = base64.b64encode(image).decode('utf-8')
+        return encoded_image

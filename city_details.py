@@ -1,3 +1,4 @@
+import base64
 import json
 from datetime import datetime, timedelta, timezone
 import currency_api_request as ca
@@ -52,8 +53,9 @@ def which_plug(dest_city):
     dest_city_plugs = data[dest_city]["adapter"]
 
     # message to be displayed to user
-    message = f"The plugs that are used in {dest_city} are:\n" \
-              f"{', '.join(dest_city_plugs)}"
+    message = ("The plugs that are used in " + dest_city + " are:\n" +
+               "\n".join(dest_city_plugs))
+
     return message
 
 
@@ -63,7 +65,7 @@ def emergency_numbers(dest_city):
 
     # get a list of the emergency numbers
     emergency_nums = data[dest_city]["emergency_numbers"]
-    emergency_nums_str = ', '.join(f'{key} - {value}' for key, value in emergency_nums.items())
+    emergency_nums_str = '\n'.join(f'{key} - {value}' for key, value in emergency_nums.items())
 
     # message to be displayed to user
     message = f"The emergency numbers in {dest_city} are:\n{emergency_nums_str}"
@@ -93,25 +95,48 @@ def full_city_details(src_city, dest_city):
     # find conversion rate
     src_currency = data[src_city]["currency"]
     dest_currency = data[dest_city]["currency"]
-    conversion_rate = ca.convert_amount(src_currency, dest_currency, 1)
+    conversion_rate = "\n" + ca.convert_amount(src_currency, dest_currency, 1)
 
     # find the rest of the city details
-    time_diff = time_difference(src_city, dest_city)
-    plug = which_plug(dest_city)
-    emergency_nums = emergency_numbers(dest_city)
-    phrases = learn_the_language(dest_city)
+    time_diff = "\n" + time_difference(src_city, dest_city)
+    plug = "\n" + which_plug(dest_city)
+    emergency_nums = "\n" + emergency_numbers(dest_city)
+    phrases = "\n" + learn_the_language(dest_city)
 
-    # return all city details in a combined string
-    new_line = "\n\n\n\n"
-    message = f"{conversion_rate}{new_line}{time_diff}{new_line}{plug}{new_line}{emergency_nums}{new_line}{phrases}"
-    return message
+    # create a dictionary with icons and city details
+    info = dict()
+
+    with open('icons/currency.png', 'rb') as f:
+        image = f.read()
+        encoded_image = base64.b64encode(image).decode('utf-8')
+        info['conversion_rate'] = [encoded_image, conversion_rate]
+
+    with open('icons/time.png', 'rb') as f:
+        image = f.read()
+        encoded_image = base64.b64encode(image).decode('utf-8')
+        info['time_diff'] = [encoded_image, time_diff]
+
+    with open('icons/plug.png', 'rb') as f:
+        image = f.read()
+        encoded_image = base64.b64encode(image).decode('utf-8')
+        info['plug'] = [encoded_image, plug]
+
+    with open('icons/emergency.png', 'rb') as f:
+        image = f.read()
+        encoded_image = base64.b64encode(image).decode('utf-8')
+        info['emergency_nums'] = [encoded_image, emergency_nums]
+
+    with open('icons/language.png', 'rb') as f:
+        image = f.read()
+        encoded_image = base64.b64encode(image).decode('utf-8')
+        info['phrases'] = [encoded_image, phrases]
+
+    return info
 
 
 def find_country(dest_city):
     data = load_database()
     return data[dest_city]["country"]
-
-
 
 
 

@@ -20,8 +20,9 @@ def calculate():
     dest_country = cd.find_country(dest_city)
     result = cd.full_city_details(src_city, dest_city)
     weather = wa.get_weather_forcast(dest_city, arrival_date, departure_date)
+    weather_icon = wa.weather_icon()
     return render_template('cityinfo.html', result=result, dest_country=dest_country, dest_city=dest_city,
-                           weather=weather)
+                           weather=weather, weather_icon=weather_icon)
 
 
 if __name__ == '__main__':
