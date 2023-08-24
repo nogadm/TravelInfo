@@ -10,44 +10,42 @@
       crossorigin="anonymous"
     />
     <title>TravelInfo</title>
-
     <style>
-   table {
-    border-collapse: collapse;
-    width: 100%;
-  }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
 
-  th, td {
-    padding: 8px;
-    text-align: center; /* Horizontally center content */
-  }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+      }
 
-  th {
-    background-color: #f2f2f2;
-  }
+      th {
+        background-color: #f2f2f2;
+      }
 
-  /* First table: All borders */
-  #weather-table {
-    border: 1px solid black;
-  }
+      #weather-table {
+        border: 1px solid black;
+      }
 
-  #weather-table th, #weather-table td {
-    border: 1px solid black;
-    vertical-align: middle; /* Vertically center content */
-  }
+      #weather-table th,
+      #weather-table td {
+        border: 1px solid black;
+        vertical-align: middle;
+      }
 
-  /* Second table: No borders */
-  #city-info-table {
-    border-collapse: collapse;
-  }
+      #city-info-table {
+        border-collapse: collapse;
+      }
 
-  #city-info-table td {
-    border: none;
-    padding: 0; /* Reset padding for no extra space */
-    vertical-align: top; /* Align content to the top */
-  }
-</style>
-
+      #city-info-table td {
+        border: none;
+        padding: 0;
+        vertical-align: top;
+      }
+    </style>
   </head>
   <body class="container text-left pt-5">
     <!-- title -->
@@ -56,83 +54,61 @@
       {{dest_country}}:
     </p>
 
-
-
-     <div class="image-cell align-top" style="text-align: center;">
+    <!-- weather forecast -->
+    <div class="image-cell align-top" style="text-align: center">
       {% if weather_icon is not none %}
       <img src="data:image/png;base64,{{ weather_icon }}" width="100" />
       {% endif %}
     </div>
     <br>
-<!-- weather forecast -->
-<table id="weather-table">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Minimum<br />Temperature</th>
-      <th>Maximum<br />Temperature</th>
-      <th>Sunrise</th>
-      <th>Sunset</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for key, value in weather.items() %}
-    <tr>
-      <td>{{ key }}</td>
-      <td>{{ value.min_temp_c }}°C / {{ value.min_temp_f }}°F</td>
-      <td>{{ value.max_temp_c }}°C / {{ value.max_temp_f }}°F</td>
-      <td>{{ value.sunrise }}</td>
-      <td>{{ value.sunset }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    <table id="weather-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Minimum<br />Temperature</th>
+          <th>Maximum<br />Temperature</th>
+          <th>Sunrise</th>
+          <th>Sunset</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for key, value in weather.items() %}
+        <tr>
+          <td>{{ key }}</td>
+          <td>{{ value.min_temp_c }}°C / {{ value.min_temp_f }}°F</td>
+          <td>{{ value.max_temp_c }}°C / {{ value.max_temp_f }}°F</td>
+          <td>{{ value.sunrise }}</td>
+          <td>{{ value.sunset }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-<!-- city information -->
-<br><br>
-<table id="city-info-table">
-<tbody>
-  <tr>
-    {% for value in result.values() %}
-    <td class="image-cell align-top"> <!-- Apply the align-top class here -->
-      {% if value[0] is not none %}
-      <img src="data:image/png;base64,{{ value[0] }}" alt="{{ value[1] }}" width="100" />
-      {% endif %}
-    </td>
-    {% endfor %}
-  </tr>
-  <tr>
-    {% for value in result.values() %}
-    <td class="image-cell align-top"> <!-- Apply the align-top class here -->
-      {{ value[1]|replace('\n', '<br>')|safe }}
-    </td>
-    {% endfor %}
-  </tr>
-</tbody>
-</table>
-
-
-
-
-
-
+    <!-- city information -->
+    <br /><br />
+    <table id="city-info-table">
+      <tbody>
+        <tr>
+          {% for value in result.values() %}
+          <td class="image-cell align-top">
+            {% if value[0] is not none %}
+            <img
+              src="data:image/png;base64,{{ value[0] }}"
+              alt="{{ value[1] }}"
+              width="100"
+            />
+            {% endif %}
+          </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          {% for value in result.values() %}
+          <td class="image-cell align-top">
+            {{ value[1]|replace('\n', '<br />')|safe }}
+          </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
   </body>
-<!--  <style>-->
-<!--     table {-->
-<!--    border-collapse: collapse;-->
-<!--    width: 100%;-->
-<!--  }-->
-<!--  td {-->
-<!--    padding: 8px;-->
-<!--    text-align: center;-->
-<!--    vertical-align: top;-->
-<!--  }-->
-<!--  .image-cell {-->
-<!--    text-align: center;-->
-<!--  }-->
-<!--  .image-cell img {-->
-<!--    display: block;-->
-<!--    margin: 0 auto;-->
-<!--  }-->
-<!--  </style>-->
 </html>
