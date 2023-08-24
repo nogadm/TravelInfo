@@ -9,5 +9,5 @@ The project was developed in Python and HTML using API requests, JSON and Flask 
 
 The project's UI:
 <br><br>
-<img src="icons/1.JPG" width="500">
-<img src="icons/2.JPG" width="500">
+<img src="icons/1.JPG" width="800">
+<img src="icons/2.JPG" width="800">
