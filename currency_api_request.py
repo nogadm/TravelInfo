@@ -18,6 +18,3 @@ def convert_amount(from_currency, to_currency, amount_to_convert):
     else:
         message = f"{amount_to_convert}{from_currency} will cost you {round(converted_amount,2)}{to_currency}"
     return message
-
-
-# print(convert_amount("ILS","USD", 100))

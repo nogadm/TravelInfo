@@ -88,6 +88,11 @@ def learn_the_language(dest_city):
     return message
 
 
+def encode_image(image):
+    encoded_image = base64.b64encode(image).decode('utf-8')
+    return encoded_image
+
+
 def full_city_details(src_city, dest_city):
     # load database json file
     data = load_database()
@@ -108,27 +113,27 @@ def full_city_details(src_city, dest_city):
 
     with open('icons/currency.png', 'rb') as f:
         image = f.read()
-        encoded_image = base64.b64encode(image).decode('utf-8')
+        encoded_image = encode_image(image)
         info['conversion_rate'] = [encoded_image, conversion_rate]
 
     with open('icons/time.png', 'rb') as f:
         image = f.read()
-        encoded_image = base64.b64encode(image).decode('utf-8')
+        encoded_image = encode_image(image)
         info['time_diff'] = [encoded_image, time_diff]
 
     with open('icons/plug.png', 'rb') as f:
         image = f.read()
-        encoded_image = base64.b64encode(image).decode('utf-8')
+        encoded_image = encode_image(image)
         info['plug'] = [encoded_image, plug]
 
     with open('icons/emergency.png', 'rb') as f:
         image = f.read()
-        encoded_image = base64.b64encode(image).decode('utf-8')
+        encoded_image = encode_image(image)
         info['emergency_nums'] = [encoded_image, emergency_nums]
 
     with open('icons/language.png', 'rb') as f:
         image = f.read()
-        encoded_image = base64.b64encode(image).decode('utf-8')
+        encoded_image = encode_image(image)
         info['phrases'] = [encoded_image, phrases]
 
     return info
