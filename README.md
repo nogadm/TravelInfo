@@ -8,6 +8,7 @@ The project was developed in Python and HTML using API requests, JSON and Flask 
 
 
 The project's UI:
+<br>
 Screen 1:
 <img src="icons/1.JPG" width="800">
 
