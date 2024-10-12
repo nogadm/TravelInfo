@@ -13,7 +13,7 @@ def load_database():
 
 
 def time_difference(src_city, dest_city):
-    # load database json file
+    # load database file
     data = load_database()
 
     # get time zones and country names
