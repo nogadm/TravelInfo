@@ -1,7 +1,7 @@
 import base64
 import json
 from datetime import datetime, timedelta, timezone
-import currency_api_request as ca
+from api.currency import CurrencyApi
 
 
 def load_database():
@@ -100,7 +100,7 @@ def full_city_details(src_city, dest_city):
     # find conversion rate
     src_currency = data[src_city]["currency"]
     dest_currency = data[dest_city]["currency"]
-    conversion_rate = "\n" + ca.convert_amount(src_currency, dest_currency, 1)
+    conversion_rate = "\n" + CurrencyApi().get_conversion_rate(src_currency, dest_currency).return_value
 
     # find the rest of the city details
     time_diff = "\n" + time_difference(src_city, dest_city)
