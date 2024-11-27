@@ -3,7 +3,7 @@ class Result:
     Result class
     """
 
-    def __init__(self, return_value=True, error_message=False):
+    def __init__(self, return_value=False, error_message=False):
         if return_value:
             self.is_pass = True
             self.is_fail = False

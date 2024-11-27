@@ -1,114 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css"
-      integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N"
-      crossorigin="anonymous"
-    />
-    <title>TravelInfo</title>
-    <style>
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
+{% extends "base.html" %} {% block title %}TravelInfo{% endblock %} {% block
+content %}
 
-      th,
-      td {
-        padding: 8px;
-        text-align: center;
-      }
 
-      th {
-        background-color: #f2f2f2;
-      }
+</head>
+<body class="container pt-5">
+<!-- title -->
+<p class="fs-4 mb-3">
+  Some important details you should know before traveling to {{destination_name}}:
+</p>
 
-      #weather-table {
-        border: 1px solid black;
-      }
+<!-- weather forecast -->
+<div class="image-cell align-top" style="text-align: center">
+</div>
+<br>
+<table id="weather-table" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Minimum<br>Temperature</th>
+      <th>Maximum<br>Temperature</th>
+      <th>Sunrise</th>
+      <th>Sunset</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key, value in weather.items() %}
+    <tr>
+      <td>{{ key }}</td>
+      <td>{{ value.min_temp_c }}°C / {{ value.min_temp_f }}°F</td>
+      <td>{{ value.max_temp_c }}°C / {{ value.max_temp_f }}°F</td>
+      <td>{{ value.sunrise }}</td>
+      <td>{{ value.sunset }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
-      #weather-table th,
-      #weather-table td {
-        border: 1px solid black;
-        vertical-align: middle;
-      }
+<!-- city information -->
+<br /><br />
+<table id="city-info-table">
+  <tbody>
+    <tr id="image-row"></tr>
+    <tr id="description-row"></tr>
+  </tbody>
+</table>
 
-      #city-info-table {
-        border-collapse: collapse;
-      }
+<script type="module">   
+  import { populateCityTable } from '../static/components/table.js';
+  const cityDetails = JSON.parse('{{ city_details | safe }}');
+  populateCityTable(cityDetails);
+</script>
 
-      #city-info-table td {
-        border: none;
-        padding: 0;
-        vertical-align: top;
-      }
-    </style>
-  </head>
-  <body class="container pt-5">
-    <!-- title -->
-    <p class="fs-4 mb-3">
-      Some important details you should know before traveling to {{dest_city}},
-      {{dest_country}}:
-    </p>
-
-    <!-- weather forecast -->
-    <div class="image-cell align-top" style="text-align: center">
-      {% if weather_icon is not none %}
-     <!-- <img src="data:image/png;base64,{{ weather_icon }}" width="100" /> -->
-      {% endif %}
-    </div>
-    <br>
-    <table id="weather-table" class="table table-hover">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Minimum<br>Temperature</th>
-          <th>Maximum<br>Temperature</th>
-          <th>Sunrise</th>
-          <th>Sunset</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for key, value in weather.items() %}
-        <tr>
-          <td>{{ key }}</td>
-          <td>{{ value.min_temp_c }}°C / {{ value.min_temp_f }}°F</td>
-          <td>{{ value.max_temp_c }}°C / {{ value.max_temp_f }}°F</td>
-          <td>{{ value.sunrise }}</td>
-          <td>{{ value.sunset }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-
-    <!-- city information -->
-    <br /><br />
-    <table id="city-info-table">
-      <tbody>
-        <tr>
-          {% for value in result.values() %}
-          <td class="image-cell align-top">
-            {% if value[0] is not none %}
-            <img
-              src="data:image/png;base64,{{ value[0] }}"
-              alt="{{ value[1] }}"
-              width="100"
-            />
-            {% endif %}
-          </td>
-          {% endfor %}
-        </tr>
-        <tr>
-          {% for value in result.values() %}
-          <td class="image-cell align-top">
-            {{ value[1]|replace('\n', '<br />')|safe }}
-          </td>
-          {% endfor %}
-        </tr>
-      </tbody>
-    </table>
-  </body>
-</html>
+{% endblock %}

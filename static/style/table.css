@@ -1,0 +1,33 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+#weather-table {
+    border: 1px solid black;
+}
+
+#weather-table th,
+#weather-table td {
+    border: 1px solid black;
+    vertical-align: middle;
+}
+
+#city-info-table {
+    border-collapse: collapse;
+}
+
+#city-info-table td {
+    border: none;
+    padding: 0;
+    vertical-align: top;
+}

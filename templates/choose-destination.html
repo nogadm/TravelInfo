@@ -1,101 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css"
-      integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N"
-      crossorigin="anonymous"
-    />
-    <title>TravelInfo</title>
-  </head>
-  <body class="container text-left pt-5">
-    <div>
-      <!--   title   -->
-      <p class="fs-1">Welcome to TravelInfo</p>
-      <p class="fs-4 mb-5">
-        Find all the important information you might need before traveling to a
-        new city in one place! <br />All that's left for you to do is let us
-        know where and when you're traveling.
-      </p>
-    </div>
-    <!--   form   -->
-    <form action="/info" method="POST">
-      <!--   source cities dropdown menu   -->
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="sourceCities"
-          >I'm leaving from</label
-        >
-        <select class="form-select" id="sourceCities" name="sourceCities">
-          <option selected>Choose...</option>
-          <option value="New York City">New York City</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="London">London</option>
-          <option value="Barcelona">Barcelona</option>
-          <option value="Tel Aviv">Tel Aviv</option>
-        </select>
-      </div>
+{% extends "base.html" %} {% block title %}TravelInfo{% endblock %} {% block
+content %}
 
-      <!--   destination cities dropdown menu   -->
-      <div class="input-group mb-5">
-        <label class="input-group-text" for="destinationCities"
-          >I'm arriving at</label
-        >
-        <select class="form-select" id="destinationCities" name="destinationCities">
-          <option selected>Choose...</option>
-          <option value="New York City">New York City</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="London">London</option>
-          <option value="Barcelona">Barcelona</option>
-          <option value="Tel Aviv">Tel Aviv</option>
-        </select>
-      </div>
+<div class="container text-left pt-5">
+  <div>
+    <!--   title   -->
+    <p class="fs-1">Welcome to TravelInfo</p>
+    <p class="fs-4 mb-5">
+      Find all the important information you might need before traveling to a
+      new city in one place! <br />All that's left for you to do is let us know
+      where and when you're traveling.
+    </p>
+  </div>
+  <!--   form   -->
+  <div id="form-container">
+    <script type="module">
+      import { chooseCitiesAndDatesForm } from "../static/components/form.js";
+      chooseCitiesAndDatesForm("form-container");
+    </script>
+  </div>
+</div>
 
-      <!--   first day date picker   -->
-      <div class="mb-3">
-        <label for="arrivalDatePicker">Arrival date:</label>
-        <input type="date" id="arrivalDatePicker" name="arrivalDatePicker" />
-      </div>
-
-      <!--   last day date picker   -->
-      <div class="mb-5">
-        <label for="departureDatePicker">Departure date:</label>
-        <input type="date" id="departureDatePicker" name="departureDatePicker" />
-      </div>
-
-      <!--   script to limit the possible dates to choose in the date picker,
-      since the api request works only for future dates (14 days from today at minimum)   -->
-      <script>
-        var today = new Date();
-
-        // calculate minimum date for the api request (today + 14 days)
-        var minDate = new Date();
-        minDate.setDate(today.getDate() + 14);
-
-        // calculate maximum date for the api request (today + 300 days)
-        var maxDate = new Date();
-        maxDate.setDate(today.getDate() + 300);
-
-        // format the dates
-        var minDateStr = minDate.toISOString().slice(0, 10);
-        var maxDateStr = maxDate.toISOString().slice(0, 10);
-
-        // set min and max attributes of the input elements
-        var arrivalDatePicker = document.getElementById("arrivalDatePicker");
-        arrivalDatePicker.min = minDateStr;
-        arrivalDatePicker.max = maxDateStr;
-
-        var departureDatePicker = document.getElementById("departureDatePicker");
-        departureDatePicker.min = minDateStr;
-        departureDatePicker.max = maxDateStr;
-      </script>
-
-      <!--   submit form button   -->
-      <div class="input-group mb-5">
-        <button type="submit" class="btn btn-primary">Get Travel Info</button>
-      </div>
-    </form>
-  </body>
-</html>
+{% endblock %}
