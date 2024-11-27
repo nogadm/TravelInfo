@@ -10,7 +10,7 @@ The project was developed in Python and HTML using API requests, JSON and Flask 
 The project's UI:
 <br>
 Screen 1:
-<img src="icons/1.JPG" width="800">
+<img src="static/icons/1.JPG" width="800">
 
 Screen 2:
-<img src="icons/2.JPG" width="800">
+<img src="static/icons/2.JPG" width="800">
